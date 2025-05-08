@@ -4,80 +4,112 @@
 <head>
     <title>Registration Form</title>
     <style>
-        form{
-            color:green;
-            background-color:yellow;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
         }
-        input{
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: italic;
-            margin: 30px;
+
+        form {
+            color: #2e7d32;
+            background-color: #fffbe7;
+            padding: 25px;
+            width: 700px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            line-height: 2;
+            font-size: 16px;
         }
-        label{
+
+        label {
+            font-weight: 600;
+        }
+
+        fieldset {
+            border: 2px solid #b2dfdb;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        legend {
             font-weight: bold;
-            line-height: 0.7;
-            text-align: center;
+            color: #0288d1;
+            font-size: 18px;
         }
 
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
     </style>
-
 </head>
 
 <body>
     <form>
         <fieldset>
-            <legend style="color :aqua">Registration Form</legend>
+            <legend>Registration Form</legend>
 
-            <label style="color:red;">Full Name:</label>
-            <input type="text" id="FullName" placeholder="Enter Full Name"><br><br>
+            <table>
+                <tr>
+                    <td><label style="color:red;">Full Name:</label></td>
+                    <td><label>Email:</label></td>
+                    <td><label>Contact Number:</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="FullName" placeholder="Enter Full Name" size="25"></td>
+                    <td><input type="email" id="Email" placeholder="Enter Email" size="25"></td>
+                    <td><input type="tel" id="Phone" placeholder="Enter Phone" size="25"></td>
+                </tr>
+            </table>
 
-            <label>Email:</label>
-            <input type="email" id="Email" placeholder="Enter Email Address"><br><br>
+            <label>Gender:</label>
+            <input type="radio" name="Gender" value="Male"> Male
+            <input type="radio" name="Gender" value="Female"> Female
+            <input type="radio" name="Gender" value="Other"> Other<br>
 
-            <label>Contact Number:</label>
-            <input type="tel" id="Phone" placeholder="Enter Phone Number"><br><br>
-
-            <label>Gender</label><br>
-            <input type="radio" name="Gender" value="Male"> Male<br>
-            <input type="radio" name="Gender" value="Female"> Female<br>
-            <input type="radio" name="Gender" value="Other"> Other<br><br>
-
-            <label>Birthday:</label>
-            <input type="date" id="Birthday" name="Birthday"><br><br>
+            <label>Birthday:</label><br>
+            <input type="date" id="Birthday" name="Birthday"><br>
 
             <label>Address:</label><br>
-            <textarea id="Address" rows="3" cols="30" placeholder="Enter your full address"></textarea><br><br>
+            <textarea id="Address" rows="3" cols="70" placeholder="Enter your full address"></textarea><br>
+            <fieldset>
+                <legend>Location Details</legend>
+                <table>
+                    <tr>
+                        <td><label>City:</label></td>
+                        <td><label>State:</label></td>
+                        <td><label>Country:</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="City" placeholder="Enter City" size="25"></td>
+                        <td><input type="text" id="State" placeholder="Enter State" size="25"></td>
+                        <td><input type="text" id="Country" placeholder="Enter Country" size="25"></td>
+                    </tr>
+                </table>
+            </fieldset>
 
-            <label>City:</label>
-            <input type="text" id="City" placeholder="Enter City"><br><br>
+            <label>Nationality:</label><br>
+            <input type="text" id="Nationality" placeholder="Enter Nationality" size="80"><br>
 
-            <label>State:</label>
-            <input type="text" id="State" placeholder="Enter State"><br><br>
-
-            <label>Country:</label>
-            <input type="text" id="Country" placeholder="Enter Country"><br><br>
-
-            <label>Nationality:</label>
-            <input type="text" id="Nationality" placeholder="Enter Nationality"><br><br>
-
-            <label>Preferred Language:</label>
-            <select id="Language">
+            <label>Preferred Language:</label><br>
+            <select id="Language" style="width: 100%;">
                 <option value="English">English</option>
                 <option value="Hindi">Hindi</option>
                 <option value="Arabic">Arabic</option>
                 <option value="French">French</option>
                 <option value="Other">Other</option>
-            </select><br><br>
+            </select><br>
 
-            <label>Create Password:</label>
-            <input type="password" id="Password" placeholder="Enter Password"><br><br>
+            <label>Create Password:</label><br>
+            <input type="password" id="Password" placeholder="Enter Password" size="80"><br>
 
-            <label>Confirm Password:</label>
-            <input type="password" id="ConfirmPassword" placeholder="Re-enter Password"><br><br>
+            <label>Confirm Password:</label><br>
+            <input type="password" id="ConfirmPassword" placeholder="Re-enter Password" size="80"><br><br>
 
             <input type="submit" value="Register">
             <input type="reset" value="Reset">
-
         </fieldset>
     </form>
 </body>
