@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Typography</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .text1 {
+            color: red;
+            font-size: 30px;
+
+        }
+
+        .text2 {
+            color: blueviolet;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .test-box {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            border: 5px solid darkblue;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px gray;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .test-box:hover {
+            background-color: rgb(141, 202, 188);
+            transform: scale(1.1);
+        }
+
+        .text-style {
+            color: darkred;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px gray;
+        }
+
+        .button-hover {
+            background-color: red;
+            transform: scale(1.2);
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Test Styling Properties in HTML & CSS</h1>
+    <div class="test-box">
+        <p class="text1">Welcome to Codingal</p>
+        <p class="text2">Welcome to Codingal</p>
+        <p class="text-style">Hover Over ME!</p>
+
+    </div>
+    <button class="button">Click ME!</button>
+</body>
+
+</html>
