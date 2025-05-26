@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSS Box Model</title>
+    <style type="text/CSS">
+        img.floatRight{
+                float: right;
+                margin: 10px;
+            }
+            img.floatLeft{
+                float:left;
+                margin: 10px;
+            }
+          .example1{
+            width: 220px;
+            background-color: yellow;
+            padding: 0px 10px 20px 40px;
+            border: 0px;
+            margin: 0px;
+            float: right;
+
+          }
+          .example2{
+            width: 220px;
+            background-color: greenyellow;
+            padding: 80px;
+            border:5px solid black;
+            margin: 60px 60px;
+          }
+
+
+        </style>
+
+</head>
+
+<body>
+    <h1>Box Model Example</h1>
+    <hr>
+    <p class="example1">Example 1</p>
+    <p class="example2">Example 2</p>
+
+<img class="floatRight" src="bg.jpg" alt="Tree - Float Right" style="width:100px;height:100px;">
+
+<img class="floatLeft" src="bg.jpg" alt="Tree - Float Left" style="width:100px;height:100px;">
+
+</body>
+
+</html>
