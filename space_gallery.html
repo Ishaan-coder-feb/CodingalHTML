@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Space Gallery</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        h1 {
+            color: #66ccff;
+            margin-bottom: 40px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .photo {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .photo img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .caption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Space Gallery</h1>
+
+    <div class="gallery">
+        <div class="photo">
+            <img src="Galaxyspiral.jfif" alt="Galaxy">
+            <div class="caption">Spiral Galaxy NGC 1566</div>
+        </div>
+        <div class="photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg" alt="Full Moon">
+            <div class="caption">The Full Moon</div>
+        </div>
+        <div class="photo">
+            <img src="Hubble.jfif" alt="Deep Field">
+            <div class="caption">Hubble Ultra Deep Field</div>
+        </div>
+        <div class="photo">
+            <img src="Sauturn.jfif"alt="Saturn">
+            <div class="caption">Saturn by Cassini</div>
+        </div>
+    </div>
+</body>
+</html>

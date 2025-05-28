@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Box Model</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px black;
+            width: 250;
+        }
+
+        .boxh2 {
+            margin-top: 0px;
+            font-size: 18px;
+            color: rgba(255, 240, 240, 0);
+        }
+
+        .boxul {
+            padding: 0px;
+            list-style: none;
+        }
+
+        .boxul li {
+            padding: 8px;
+            background-color: white;
+            margin-bottom: 6px;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Fruits</h1>
+            <ul>
+                <li>Orange</li>
+                <li>Mango</li>
+                <li>Apple</li>
+                <li>Banana</li>
+            </ul>
+            <div class="box">
+                <h1>Fruits</h1>
+                <ul>
+                    <li>Orange</li>
+                    <li>Mango</li>
+                    <li>Apple</li>
+                    <li>Banana</li>
+                </ul>
+                <div class="box">
+                    <h1>Fruits</h1>
+                    <ul>
+                        <li>Orange</li>
+                        <li>Mango</li>
+                        <li>Apple</li>
+                        <li>Banana</li>
+                    </ul>
+                    <div class="box">
+                        <h1>Fruits</h1>
+                        <ul>
+                            <li>Orange</li>
+                            <li>Mango</li>
+                            <li>Apple</li>
+                            <li>Banana</li>
+                        </ul>
+                    </div>
+</body>
+
+</html>
