@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opacity with Hover Example</title>
+    <style>
+        div {
+            background-color: greenyellow;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: opacity 0.3s ease; /* Smooth transition */
+        }
+        div.first {
+            opacity: 0.1;
+        }
+        div.second {
+            opacity: 0.3;
+        }
+        div.third {
+            opacity: 0.7;
+        }
+        /* Hover states */
+        div.first:hover,
+        div.second:hover,
+        div.third:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hover to Change Opacity</h1>
+    <p>Hover over the boxes to see their opacity change:</p>
+    
+    <div class="first">
+        opacity: 0.1 (hover to see opacity: 1)
+    </div>
+    
+    <div class="second">
+        opacity: 0.3 (hover to see opacity: 1)
+    </div>
+    
+    <div class="third">
+        opacity: 0.7 (hover to see opacity: 1)
+    </div>
+</body>
+</html>
