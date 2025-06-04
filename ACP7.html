@@ -1,67 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cascading Effects Example</title>
 <style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(to right, #f8f9fa, #e0f7fa);
-        margin: 0;
-        padding: 20px;
-        text-align: center;
-    }
-
-    h1 {
-        color: #4a148c;
-        animation: slideIn 1s ease-out;
-    }
-
-    .demo-box {
-        border: 2px solid #4a148c;
-        padding: 20px;
-        border-radius: 12px;
-        margin: 30px auto;
-        max-width: 500px;
-        background: #fff;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.4s;
-    }
-
     p {
         color: blue;
-        font-size: 18px;
-    }
-
-    .highlighted {
-        color: orange;
-    }
-
-    #special {
-        color: red;
-    }
-
-    .btn {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: #4a148c;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
         font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.2s;
     }
 
-    .btn:hover {
-        transform: scale(1.05);
-        background: #6a1b9a;
+    div p {
+        color: green;
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    div p.highlight {
+        color: red;
+        font-weight: bold;
     }
 </style>
+</head>
+<body>
+
+    <h1>Cascading Effects Demo</h1>
+    
+    <p>This is a global paragraph. (should be blue)</p>
+
+    <div>
+        <p>This paragraph is inside a div. (should be green)</p>
+        <p class="highlight">This paragraph is highlighted inside a div. (should be red and bold)</p>
+    </div>
+
+</body>
+</html>
