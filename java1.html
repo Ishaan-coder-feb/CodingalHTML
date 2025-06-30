@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript 1</title>
+    <style>
+        body {
+
+            text-align: center;
+
+            margin-top: 50px;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        p {
+
+            font-size: 20px;
+
+        }
+
+        button {
+
+            font-size: 18px;
+
+            padding: 10px 20px;
+
+            margin: 10px;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        .success {
+
+            background-color: green;
+
+            color: white;
+
+        }
+
+        .failure {
+
+            background-color: red;
+
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <p id="message">Click this button!</p>
+    <p id="message2">Click this button!</p>
+
+    <button class="success" onclick="one()">Success Button</button>
+    <button class="success" onclick="two()">Failure Button</button>
+    <p id="calci_add">Here Your will see the result</p>
+    <p id="calci_Subtract">Here Your will see the result</p>
+    <p id="calci_div">Here Your will see the result</p>
+    <p id="calci_Mul">Here Your will see the result</p>
+
+</body>
+<script>
+    function one() {
+        document.getElementById("message").innerHTML = "Wow!You clicked and something wonderful happenned!"
+        Document.title = "Success!"
+    }
+    function two() {
+        document.getElementById("message2").innerHTML = "Wow!You clicked and nothing happenned!"
+        Document.title = "Oops!Hard Luck ,Try Again!"
+    }
+    var a = 20
+    var b = 10
+    var c = a + b;
+    var d = a - b;
+    var e = a * b;
+    var f = a / b
+    document.getElementById("calci_add").innerHTML = "The sum of two number is: " + c
+    document.getElementById("calci_Subtract").innerHTML = "The difference of two number is: " + d
+    document.getElementById("calci_Mul").innerHTML = "The Product of two number is: " + e
+    document.getElementById("calci_Div").innerHTML = "The Quotient of two number is: " + f
+
+
+
+</script>
+
+</html>
