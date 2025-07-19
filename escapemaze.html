@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Escape the Loop (HTML/CSS Demo)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #0f0;
+    }
+
+    #maze {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-template-rows: repeat(10, 40px);
+      gap: 2px;
+      margin: 20px 0;
+    }
+
+    .tile {
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      border: 1px solid #444;
+    }
+
+    .floor {
+      background-color: #fff;
+    }
+
+    .wall {
+      background-color: #000;
+    }
+
+    .trap {
+      background-color: red;
+    }
+
+    .exit {
+      background-color: green;
+    }
+
+    .player {
+      background-color: blue;
+    }
+
+    #info {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Escape the Loop</h1>
+  <div id="info">
+    <span id="level">Level: 1</span> |
+    <span id="timer">Time: 90</span>
+  </div>
+  <div id="maze"></div>
+
+  <script>
+    const mazeElement = document.getElementById("maze");
+    const levelLabel = document.getElementById("level");
+    const timerLabel = document.getElementById("timer");
+
+    const width = 10;
+    const height = 10;
+    let playerPos = { x: 0, y: 0 };
+    let level = 1;
+    let timer = 120; // Increased timer to 90 seconds
+    let intervalId;
+
+    const TILE_TYPES = ["floor", "wall", "floor", "floor"];
+
+    function createMaze() {
+      const maze = [];
+      for (let y = 0; y < height; y++) {
+        const row = [];
+        for (let x = 0; x < width; x++) {
+          let type = TILE_TYPES[Math.floor(Math.random() * TILE_TYPES.length)];
+          row.push(type);
+        }
+        maze.push(row);
+      }
+      maze[0][0] = "floor";
+      maze[height - 1][width - 1] = "exit";
+
+      for (let i = 0; i < 10; i++) {
+        const tx = Math.floor(Math.random() * width);
+        const ty = Math.floor(Math.random() * height);
+        if (maze[ty][tx] === "floor" && (tx !== 0 || ty !== 0)) {
+          maze[ty][tx] = "trap";
+        }
+      }
+      return maze;
+    }
+
+    function renderMaze(maze) {
+      mazeElement.innerHTML = "";
+      maze.forEach((row, y) => {
+        row.forEach((tile, x) => {
+          const div = document.createElement("div");
+          div.classList.add("tile");
+          if (playerPos.x === x && playerPos.y === y) {
+            div.classList.add("player");
+          } else {
+            div.classList.add(tile);
+          }
+          mazeElement.appendChild(div);
+        });
+      });
+    }
+
+    let maze = createMaze();
+    renderMaze(maze);
+
+    function startTimer() {
+      timer = 120; // reset timer to 90 seconds each time
+      timerLabel.textContent = `Time: ${timer}`;
+      intervalId = setInterval(() => {
+        timer--;
+        timerLabel.textContent = `Time: ${timer}`;
+        if (timer <= 0) {
+          clearInterval(intervalId);
+          alert("⏳ Time's up! Restarting maze...");
+          restartMaze();
+        }
+      }, 1000);
+    }
+
+    function restartMaze() {
+      maze = createMaze();
+      playerPos = { x: 0, y: 0 };
+      renderMaze(maze);
+      startTimer();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      let dx = 0, dy = 0;
+      if (e.key === "ArrowUp" || e.key === "w") dy = -1;
+      if (e.key === "ArrowDown" || e.key === "s") dy = 1;
+      if (e.key === "ArrowLeft" || e.key === "a") dx = -1;
+      if (e.key === "ArrowRight" || e.key === "d") dx = 1;
+
+      const nx = playerPos.x + dx;
+      const ny = playerPos.y + dy;
+
+      if (nx >= 0 && nx < width && ny >= 0 && ny < height && maze[ny][nx] !== "wall") {
+        playerPos.x = nx;
+        playerPos.y = ny;
+
+        const tile = maze[ny][nx];
+        if (tile === "trap") {
+          alert("💀 You hit a trap! Restarting maze...");
+          restartMaze();
+        } else if (tile === "exit") {
+          alert("✅ You escaped the loop! Next level...");
+          level++;
+          levelLabel.textContent = `Level: ${level}`;
+          restartMaze();
+        } else {
+          renderMaze(maze);
+        }
+      }
+    });
+
+    startTimer();
+  </script>
+</body>
+
+</html>
