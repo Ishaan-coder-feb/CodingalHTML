@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gift Catcher Game with Timer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffedf0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #d6336c;
+      margin-top: 20px;
+    }
+    canvas {
+      background-color: #fff;
+      border: 4px solid #d6336c;
+      border-radius: 10px;
+      display: block;
+      margin: 20px auto;
+    }
+    .score, .timer {
+      font-size: 20px;
+      color: #d6336c;
+      margin: 10px 0;
+    }
+    .game-over {
+      font-size: 1.8em;
+      color: #b22222;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎁 Catch the Gifts 🎁</h1>
+<div class="timer" id="timer">Time Left: 60s</div>
+<canvas id="gameCanvas" width="600" height="400"></canvas>
+<div class="score" id="score">Score: 0</div>
+<div class="game-over" id="gameOver" style="display:none;">⏰ Time's up! Final Score: 0</div>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const basketWidth = 80;
+  const basketHeight = 20;
+  const giftSize = 30;
+  let score = 0;
+  let timeLeft = 60;
+  let gameRunning = true;
+
+  let basket = {
+    x: canvas.width / 2 - basketWidth / 2,
+    y: canvas.height - basketHeight - 10,
+    width: basketWidth,
+    height: basketHeight,
+    speed: 7
+  };
+
+  let gifts = [];
+
+  function createGift() {
+    if (!gameRunning) return;
+    const x = Math.random() * (canvas.width - giftSize);
+    gifts.push({ x, y: 0 });
+  }
+
+  function drawBasket() {
+    ctx.fillStyle = "#ff69b4";
+    ctx.fillRect(basket.x, basket.y, basket.width, basket.height);
+  }
+
+  function drawGifts() {
+    ctx.font = "24px Arial";
+    gifts.forEach(gift => {
+      ctx.fillText("🎁", gift.x, gift.y);
+    });
+  }
+
+  function updateGifts() {
+    for (let i = gifts.length - 1; i >= 0; i--) {
+      gifts[i].y += 3;
+      if (
+        gifts[i].y + giftSize > basket.y &&
+        gifts[i].x > basket.x &&
+        gifts[i].x < basket.x + basket.width
+      ) {
+        gifts.splice(i, 1);
+        score++;
+        document.getElementById("score").textContent = `Score: ${score}`;
+      } else if (gifts[i].y > canvas.height) {
+        gifts.splice(i, 1);
+      }
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBasket();
+    drawGifts();
+    updateGifts();
+  }
+
+  function gameLoop() {
+    if (!gameRunning) return;
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  function moveBasket(e) {
+    if (!gameRunning) return;
+    if (e.key === "ArrowLeft" && basket.x > 0) {
+      basket.x -= basket.speed;
+    } else if (e.key === "ArrowRight" && basket.x + basket.width < canvas.width) {
+      basket.x += basket.speed;
+    }
+  }
+
+  function updateTimer() {
+    if (timeLeft > 0) {
+      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+      timeLeft--;
+      setTimeout(updateTimer, 1000);
+    } else {
+      gameRunning = false;
+      document.getElementById("timer").textContent = "Time Left: 0s";
+      document.getElementById("gameOver").style.display = "block";
+      document.getElementById("gameOver").textContent = `⏰ Time's up! Final Score: ${score}`;
+    }
+  }
+
+  setInterval(createGift, 1000);
+  document.addEventListener("keydown", moveBasket);
+  updateTimer();
+  gameLoop();
+</script>
+
+</body>
+</html>

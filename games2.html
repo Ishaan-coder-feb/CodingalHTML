@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Memory Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      background-color: #fff0f5;
+      margin: 0;
+    }
+
+    .controls {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .controls button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: #ffb6c1;
+      border: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .timer {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #ff1493;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      gap: 10px;
+    }
+
+    .card {
+      width: 100px;
+      height: 100px;
+      background-color: #ff69b4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 12px;
+    }
+
+    .card.flipped {
+      background-color: #ffdead;
+      color: #8b008b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="controls">
+    <button onclick="restartGame()">Restart</button>
+    <button onclick="shuffleBoard()">Shuffle</button>
+    <div class="timer" id="timer">Time: 0s</div>
+  </div>
+
+  <div class="game-board" id="board"></div>
+
+  <script>
+    const emojis = ['🎂', '🎁', '🎈', '🎉', '🍰', '🎊', '🍬', '🎀'];
+    let cards = [...emojis, ...emojis];
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+    let timer;
+    let seconds = 0;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      seconds = 0;
+      document.getElementById('timer').textContent = `Time: ${seconds}s`;
+      timer = setInterval(() => {
+        seconds++;
+        document.getElementById('timer').textContent = `Time: ${seconds}s`;
+      }, 1000);
+    }
+
+    function createBoard() {
+      shuffle(cards);
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      cards.forEach((emoji, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.emoji = emoji;
+        card.dataset.index = index;
+        card.addEventListener('click', flipCard);
+        board.appendChild(card);
+      });
+    }
+
+    function flipCard() {
+      if (lockBoard || this === firstCard) return;
+
+      this.textContent = this.dataset.emoji;
+      this.classList.add('flipped');
+
+      if (!firstCard) {
+        firstCard = this;
+        return;
+      }
+
+      secondCard = this;
+      checkMatch();
+    }
+
+    function checkMatch() {
+      lockBoard = true;
+      const isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
+      if (isMatch) {
+        disableCards();
+      } else {
+        setTimeout(unflipCards, 1000);
+      }
+    }
+
+    function disableCards() {
+      firstCard.removeEventListener('click', flipCard);
+      secondCard.removeEventListener('click', flipCard);
+      resetBoard();
+    }
+
+    function unflipCards() {
+      firstCard.textContent = '';
+      secondCard.textContent = '';
+      firstCard.classList.remove('flipped');
+      secondCard.classList.remove('flipped');
+      resetBoard();
+    }
+
+    function resetBoard() {
+      [firstCard, secondCard] = [null, null];
+      lockBoard = false;
+    }
+
+    function restartGame() {
+      cards = [...emojis, ...emojis];
+      createBoard();
+      startTimer();
+    }
+
+    function shuffleBoard() {
+      const flippedCards = document.querySelectorAll('.card.flipped');
+      flippedCards.forEach(card => {
+        card.textContent = '';
+        card.classList.remove('flipped');
+      });
+      resetBoard();
+      shuffle(cards);
+      createBoard();
+    }
+
+    restartGame();
+  </script>
+</body>
+
+</html>

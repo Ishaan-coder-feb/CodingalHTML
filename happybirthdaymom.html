@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffd6e0, #fef9e7);
+            color: #333;
+        }
+
+        header {
+            background: #ff66b2;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            animation: pop 1s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        section {
+            padding: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #ff3399;
+            font-size: 1.8em;
+        }
+
+        .activities ul {
+            list-style-type: square;
+            padding-left: 20px;
+            color: #444;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ffccdd;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .confetti {
+            font-size: 25px;
+            text-align: center;
+            animation: confettiFall 3s infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>🎉 Happy 43rd Birthday, <span style="color:yellow;">Mumma!</span>! 🎉</header>
+
+    <section class="card">
+        <h2>🎈 Birthday Wishes</h2>
+        <p>Dear <b>Seema Goyal/Mumma/Naughty/Baaa</b>,</p>
+        <p>On this beautiful day, we celebrate YOU — your love, kindness, strength, and all the joy you bring into the
+            world. May this year be full of laughter, surprises, good health, and unforgettable moments. 💖</p>
+        <p><i>Happy 43rd Birthday! You deserve the absolute best!</i></p>
+    </section>
+
+    <section class="card">
+        <h2>📸 Memories Gallery</h2>
+        <div class="gallery">
+            <img src="https://source.unsplash.com/200x200/?birthday,woman" alt="memory1">
+            <img src="https://source.unsplash.com/200x200/?cake,happy" alt="memory2">
+            <img src="https://source.unsplash.com/200x200/?flowers,love" alt="memory3">
+            <img src="https://source.unsplash.com/200x200/?family,smile" alt="memory4">
+            <img src="https://source.unsplash.com/200x200/?friends,celebration" alt="memory5">
+        </div>
+    </section>
+
+    <section class="card activities">
+        <h2>🎉 Fun Birthday Activities</h2>
+        <ul>
+            <li>💃 Dance-off challenge with family</li>
+            <li>🍰 Blindfolded cake decorating game</li>
+            <li>🎤 Karaoke night — your favorite songs!</li>
+            <li>📸 Photo booth with fun props</li>
+            <li>🎁 Treasure hunt with birthday gifts</li>
+        </ul>
+    </section>
+    <section class="card">
+        <h2>🕹️ Want to Play Some Birthday Games?</h2>
+        <p>We made some fun games just for you!</p>
+        <a class="button" href="games.html">🎮 Play Games Now!</a>
+        <a class="button" href="games2.html">🎮 Play Games Now!</a>
+        <a class="button" href="games3.html">🎮 Play Games Now!</a>
+    </section>
+
+
+    <section class="card">
+        <h2>💬 Messages From Loved Ones</h2>
+        <p>“You light up every room you enter — thank you for being you. Happy Birthday!”</p>
+        <p>“A mother, a friend, a superwoman — may your day be filled with magic!”</p>
+        <p>“Here's to 43 years of love, life, and legacy. Keep shining!”</p>
+    </section>
+
+    <section class="confetti">
+        🎊✨🎉💖🎂🎁🥳
+    </section>
+
+    <footer>
+        Made with 💝 just for you | Created by Ishaan Goyal ,Your B2ji
+    </footer>
+
+</body>
+
+</html>
